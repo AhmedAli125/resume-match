@@ -1,0 +1,14 @@
+node_modules
+dist
+build
+coverage
+*.log
+.expo
+.next
+android
+ios
+web-build
+*.tsbuildinfo
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
