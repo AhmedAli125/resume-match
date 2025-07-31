@@ -12,6 +12,8 @@ import {
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
+import '../global.css';
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
