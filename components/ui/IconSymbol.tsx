@@ -33,6 +33,9 @@ const MAPPING = {
   'chart.bar': 'bar-chart',
   mail: 'email',
   person: 'person',
+  plus: 'add',
+  'line.horizontal.3': 'tune',
+  ellipsis: 'more-vert',
 } as IconMapping;
 
 /**
