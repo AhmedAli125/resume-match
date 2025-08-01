@@ -44,6 +44,11 @@ const MAPPING = {
   clock: 'schedule',
   eye: 'visibility',
   trash: 'delete',
+  'checkmark.circle': 'check-circle',
+  'xmark.circle': 'cancel',
+  bookmark: 'bookmark',
+  'arrow.clockwise': 'refresh',
+  lightbulb: 'lightbulb',
 } as IconMapping;
 
 /**
