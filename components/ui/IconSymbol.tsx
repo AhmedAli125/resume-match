@@ -36,6 +36,10 @@ const MAPPING = {
   plus: 'add',
   'line.horizontal.3': 'tune',
   ellipsis: 'more-vert',
+  'chevron.left': 'arrow-back',
+  'icloud.and.arrow.up': 'cloud-upload',
+  xmark: 'close',
+  'square.and.pencil': 'edit',
 } as IconMapping;
 
 /**

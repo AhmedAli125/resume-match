@@ -8,6 +8,8 @@ import {
   View,
 } from 'react-native';
 
+import { router } from 'expo-router';
+
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function ResumesScreen() {
@@ -38,7 +40,10 @@ export default function ResumesScreen() {
         {/* Header */}
         <View className="flex-row items-center justify-between mb-6">
           <Text className="text-2xl font-bold text-gray-900">My Resumes</Text>
-          <TouchableOpacity className="w-10 h-10 bg-blue-500 rounded-full items-center justify-center">
+          <TouchableOpacity
+            className="w-10 h-10 bg-blue-500 rounded-full items-center justify-center"
+            onPress={() => router.push('/upload-resume')}
+          >
             <IconSymbol name="plus" size={20} color="white" />
           </TouchableOpacity>
         </View>
