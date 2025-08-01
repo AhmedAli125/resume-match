@@ -23,6 +23,10 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  brain: 'psychology',
+  'doc.text': 'description',
+  envelope: 'email',
+  globe: 'language',
 } as IconMapping;
 
 /**
