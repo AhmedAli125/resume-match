@@ -117,7 +117,10 @@ export default function CoverLetterSetupScreen() {
 
         {/* Generate Button */}
         <View className="px-6 pb-6">
-          <TouchableOpacity className="bg-blue-500 rounded-2xl py-4 items-center">
+          <TouchableOpacity
+            className="bg-blue-500 rounded-2xl py-4 items-center"
+            onPress={() => router.push('/cover-letter')}
+          >
             <Text className="text-white font-semibold text-lg">
               Generate Cover Letter
             </Text>
