@@ -1,81 +1,150 @@
-import { Platform, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Image } from 'expo-image';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { router } from 'expo-router';
+
+import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{' '}
-          to see changes. Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">
-            npm run reset-project
-          </ThemedText>{' '}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{' '}
-          directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView className="flex-1 px-6 pt-4">
+        {/* Header Section */}
+        <View className="mb-8">
+          <Text className="text-2xl font-bold text-gray-900 mb-1">
+            Hi, John
+          </Text>
+          <Text className="text-gray-600 text-base">Welcome back!</Text>
+        </View>
+
+        {/* Stats Cards */}
+        <View className="flex-row mb-8 gap-4">
+          <StatCard number="12" label="Resumes" icon="doc.text" />
+          <StatCard number="8" label="Job Analyses" icon="chart.bar" />
+        </View>
+
+        {/* Quick Actions */}
+        <View className="mb-8">
+          <Text className="text-xl font-bold text-gray-900 mb-4">
+            Quick Actions
+          </Text>
+          <View className="gap-3">
+            <QuickActionItem
+              icon="arrow.up.doc"
+              text="Upload New Resume"
+              iconColor="#4285F4"
+              onPress={() => router.push('/upload-resume')}
+            />
+            <QuickActionItem
+              icon="magnifyingglass"
+              text="Start Job Analysis"
+              iconColor="#4285F4"
+              onPress={() => router.push('/resume-analysis')}
+            />
+            <QuickActionItem
+              icon="folder"
+              text="View My Resumes"
+              iconColor="#4285F4"
+              onPress={() => router.push('/(tabs)/resumes')}
+            />
+          </View>
+        </View>
+
+        {/* Recent Activity */}
+        <View className="mb-8">
+          <Text className="text-xl font-bold text-gray-900 mb-4">
+            Recent Activity
+          </Text>
+          <View className="gap-4">
+            <ActivityItem
+              icon="magnifyingglass"
+              title="Software Engineer position analyzed"
+              subtitle="2 hours ago"
+              iconColor="#4285F4"
+            />
+            <ActivityItem
+              icon="arrow.up.doc"
+              title="New resume uploaded"
+              subtitle="Yesterday"
+              iconColor="#4285F4"
+            />
+            <ActivityItem
+              icon="mail"
+              title="Cover letter generated"
+              subtitle="2 days ago"
+              iconColor="#4285F4"
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+function StatCard({
+  number,
+  label,
+  icon,
+}: {
+  number: string;
+  label: string;
+  icon: string;
+}) {
+  return (
+    <View className="flex-1 bg-blue-50 rounded-xl p-4">
+      <IconSymbol name={icon as any} size={20} color="#4285F4" />
+      <Text className="text-2xl font-bold text-gray-900 mt-2 mb-1">
+        {number}
+      </Text>
+      <Text className="text-gray-600 text-sm">{label}</Text>
+    </View>
+  );
+}
+
+function QuickActionItem({
+  icon,
+  text,
+  iconColor,
+  onPress,
+}: {
+  icon: string;
+  text: string;
+  iconColor: string;
+  onPress?: () => void;
+}) {
+  return (
+    <TouchableOpacity
+      className="bg-gray-50 rounded-xl p-4 flex-row items-center"
+      onPress={onPress}
+    >
+      <IconSymbol name={icon as any} size={24} color={iconColor} />
+      <Text className="ml-4 text-gray-800 font-medium text-base">{text}</Text>
+    </TouchableOpacity>
+  );
+}
+
+function ActivityItem({
+  icon,
+  title,
+  subtitle,
+  iconColor,
+}: {
+  icon: string;
+  title: string;
+  subtitle: string;
+  iconColor: string;
+}) {
+  return (
+    <TouchableOpacity className="flex-row items-center py-3">
+      <View className="w-10 h-10 bg-blue-50 rounded-full items-center justify-center mr-4">
+        <IconSymbol name={icon as any} size={20} color={iconColor} />
+      </View>
+      <View className="flex-1">
+        <Text className="text-gray-900 font-medium text-base">{title}</Text>
+        <Text className="text-gray-500 text-sm">{subtitle}</Text>
+      </View>
+      <IconSymbol name="chevron.right" size={16} color="#9CA3AF" />
+    </TouchableOpacity>
+  );
+}
