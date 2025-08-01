@@ -80,7 +80,10 @@ function ResumeItem({
   resume: { id: number; name: string; date: string; size: string };
 }) {
   return (
-    <TouchableOpacity className="flex-row items-center py-4 px-4 mb-3 bg-gray-50 rounded-xl">
+    <TouchableOpacity
+      className="flex-row items-center py-4 px-4 mb-3 bg-gray-50 rounded-xl"
+      onPress={() => router.push('/resume-preview')}
+    >
       {/* File Icon */}
       <View className="w-12 h-12 bg-blue-100 rounded-xl items-center justify-center mr-4">
         <IconSymbol name="doc.text" size={24} color="#4285F4" />
