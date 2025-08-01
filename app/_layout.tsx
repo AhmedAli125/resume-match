@@ -1,5 +1,7 @@
 import 'react-native-reanimated';
 
+import React, { useState } from 'react';
+
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -10,12 +12,14 @@ import {
   ThemeProvider,
 } from '@react-navigation/native';
 
+import SplashScreen from '@/components/SplashScreen';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 import '../global.css';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const [showSplash, setShowSplash] = useState(true);
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -23,6 +27,10 @@ export default function RootLayout() {
   if (!loaded) {
     // Async font loading only occurs in development.
     return null;
+  }
+
+  if (showSplash) {
+    return <SplashScreen onComplete={() => setShowSplash(false)} />;
   }
 
   return (
