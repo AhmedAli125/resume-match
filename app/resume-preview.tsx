@@ -42,7 +42,10 @@ export default function ResumePreviewScreen() {
           </View>
 
           {/* Generate AI Cover Letter Button */}
-          <TouchableOpacity className="flex-row items-center justify-between bg-gray-50 rounded-2xl p-4">
+          <TouchableOpacity
+            className="flex-row items-center justify-between bg-gray-50 rounded-2xl p-4"
+            onPress={() => router.push('/cover-letter-setup')}
+          >
             <View className="flex-row items-center">
               <View className="w-10 h-10 bg-blue-100 rounded-xl items-center justify-center mr-4">
                 <IconSymbol name="brain" size={20} color="#4285F4" />

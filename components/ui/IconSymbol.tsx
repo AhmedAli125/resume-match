@@ -49,6 +49,8 @@ const MAPPING = {
   bookmark: 'bookmark',
   'arrow.clockwise': 'refresh',
   lightbulb: 'lightbulb',
+  star: 'star',
+  briefcase: 'work',
 } as IconMapping;
 
 /**

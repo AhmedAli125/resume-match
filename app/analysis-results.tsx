@@ -118,7 +118,10 @@ export default function AnalysisResultsScreen() {
 
           {/* Action Buttons */}
           <View className="mx-6 mt-6">
-            <TouchableOpacity className="bg-blue-500 rounded-2xl py-4 flex-row items-center justify-center mb-4">
+            <TouchableOpacity
+              className="bg-blue-500 rounded-2xl py-4 flex-row items-center justify-center mb-4"
+              onPress={() => router.push('/cover-letter-setup')}
+            >
               <IconSymbol name="brain" size={20} color="white" />
               <Text className="text-white font-semibold text-base ml-2">
                 Generate AI Cover Letter
