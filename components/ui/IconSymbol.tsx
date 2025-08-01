@@ -40,6 +40,10 @@ const MAPPING = {
   'icloud.and.arrow.up': 'cloud-upload',
   xmark: 'close',
   'square.and.pencil': 'edit',
+  'chevron.down': 'keyboard-arrow-down',
+  clock: 'schedule',
+  eye: 'visibility',
+  trash: 'delete',
 } as IconMapping;
 
 /**

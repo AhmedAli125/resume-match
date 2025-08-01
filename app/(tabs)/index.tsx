@@ -2,6 +2,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
+import { router } from 'expo-router';
+
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function HomeScreen() {
@@ -32,16 +34,19 @@ export default function HomeScreen() {
               icon="arrow.up.doc"
               text="Upload New Resume"
               iconColor="#4285F4"
+              onPress={() => router.push('/upload-resume')}
             />
             <QuickActionItem
               icon="magnifyingglass"
               text="Start Job Analysis"
               iconColor="#4285F4"
+              onPress={() => router.push('/resume-analysis')}
             />
             <QuickActionItem
               icon="folder"
               text="View My Resumes"
               iconColor="#4285F4"
+              onPress={() => router.push('/(tabs)/resumes')}
             />
           </View>
         </View>
@@ -101,13 +106,18 @@ function QuickActionItem({
   icon,
   text,
   iconColor,
+  onPress,
 }: {
   icon: string;
   text: string;
   iconColor: string;
+  onPress?: () => void;
 }) {
   return (
-    <TouchableOpacity className="bg-gray-50 rounded-xl p-4 flex-row items-center">
+    <TouchableOpacity
+      className="bg-gray-50 rounded-xl p-4 flex-row items-center"
+      onPress={onPress}
+    >
       <IconSymbol name={icon as any} size={24} color={iconColor} />
       <Text className="ml-4 text-gray-800 font-medium text-base">{text}</Text>
     </TouchableOpacity>
