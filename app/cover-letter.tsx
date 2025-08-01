@@ -76,7 +76,10 @@ John Smith`;
 
           {/* Secondary Actions Row 2 */}
           <View className="flex-row gap-3">
-            <TouchableOpacity className="flex-1 bg-gray-100 rounded-2xl py-4 flex-row items-center justify-center">
+            <TouchableOpacity
+              className="flex-1 bg-gray-100 rounded-2xl py-4 flex-row items-center justify-center"
+              onPress={() => router.push('/send-resume')}
+            >
               <IconSymbol name="mail" size={18} color="#374151" />
               <Text className="text-gray-700 font-medium ml-2">Send Email</Text>
             </TouchableOpacity>
