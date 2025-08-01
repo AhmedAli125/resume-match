@@ -27,6 +27,12 @@ const MAPPING = {
   'doc.text': 'description',
   envelope: 'email',
   globe: 'language',
+  'arrow.up.doc': 'upload',
+  magnifyingglass: 'search',
+  folder: 'folder',
+  'chart.bar': 'bar-chart',
+  mail: 'email',
+  person: 'person',
 } as IconMapping;
 
 /**

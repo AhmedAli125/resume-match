@@ -1,76 +1,103 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
-import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ThemedView className="flex-1 px-6 pt-16">
-        {/* App Title */}
-        <Text className="text-center text-3xl font-bold text-blue-500 mb-16">
-          ResumeMatch
-        </Text>
-
-        {/* Welcome Section */}
-        <View className="mb-12">
-          <Text className="text-center text-2xl font-bold text-gray-900 mb-3">
-            Welcome to
+      <ScrollView className="flex-1 px-6 pt-4">
+        {/* Header Section */}
+        <View className="mb-8">
+          <Text className="text-2xl font-bold text-gray-900 mb-1">
+            Hi, John
           </Text>
-          <Text className="text-center text-2xl font-bold text-gray-900 mb-6">
-            ResumeMatch
-          </Text>
-          <Text className="text-center text-gray-600 text-base leading-6">
-            Your smart resume assistant for job applications
-          </Text>
+          <Text className="text-gray-600 text-base">Welcome back!</Text>
         </View>
 
-        {/* Features List */}
-        <View className="mb-12">
-          <FeatureItem
-            icon="brain"
-            text="AI Resume Analysis"
-            iconColor="#4285F4"
-          />
-          <FeatureItem
-            icon="doc.text"
-            text="Smart Cover Letters"
-            iconColor="#4285F4"
-          />
-          <FeatureItem
-            icon="envelope"
-            text="Direct Gmail Integration"
-            iconColor="#4285F4"
-          />
+        {/* Stats Cards */}
+        <View className="flex-row mb-8 gap-4">
+          <StatCard number="12" label="Resumes" icon="doc.text" />
+          <StatCard number="8" label="Job Analyses" icon="chart.bar" />
         </View>
 
-        {/* Google Sign In Button */}
-        <TouchableOpacity className="bg-white border border-gray-300 rounded-xl py-4 px-6 flex-row items-center justify-center mb-6 shadow-sm">
-          <IconSymbol name="globe" size={20} color="#4285F4" />
-          <Text className="ml-3 text-gray-700 font-medium text-base">
-            Continue with Google
+        {/* Quick Actions */}
+        <View className="mb-8">
+          <Text className="text-xl font-bold text-gray-900 mb-4">
+            Quick Actions
           </Text>
-        </TouchableOpacity>
-
-        {/* Terms and Privacy */}
-        <Text className="text-center text-gray-500 text-sm leading-5">
-          By continuing, you agree to our{' '}
-          <Text className="text-blue-500">Terms of Service</Text> and{' '}
-          <Text className="text-blue-500">Privacy Policy</Text>
-        </Text>
-
-        {/* Bottom Indicator */}
-        <View className="flex-1 justify-end pb-8">
-          <View className="w-32 h-1 bg-black rounded-full self-center" />
+          <View className="gap-3">
+            <QuickActionItem
+              icon="arrow.up.doc"
+              text="Upload New Resume"
+              iconColor="#4285F4"
+            />
+            <QuickActionItem
+              icon="magnifyingglass"
+              text="Start Job Analysis"
+              iconColor="#4285F4"
+            />
+            <QuickActionItem
+              icon="folder"
+              text="View My Resumes"
+              iconColor="#4285F4"
+            />
+          </View>
         </View>
-      </ThemedView>
+
+        {/* Recent Activity */}
+        <View className="mb-8">
+          <Text className="text-xl font-bold text-gray-900 mb-4">
+            Recent Activity
+          </Text>
+          <View className="gap-4">
+            <ActivityItem
+              icon="magnifyingglass"
+              title="Software Engineer position analyzed"
+              subtitle="2 hours ago"
+              iconColor="#4285F4"
+            />
+            <ActivityItem
+              icon="arrow.up.doc"
+              title="New resume uploaded"
+              subtitle="Yesterday"
+              iconColor="#4285F4"
+            />
+            <ActivityItem
+              icon="mail"
+              title="Cover letter generated"
+              subtitle="2 days ago"
+              iconColor="#4285F4"
+            />
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-function FeatureItem({
+function StatCard({
+  number,
+  label,
+  icon,
+}: {
+  number: string;
+  label: string;
+  icon: string;
+}) {
+  return (
+    <View className="flex-1 bg-blue-50 rounded-xl p-4">
+      <IconSymbol name={icon as any} size={20} color="#4285F4" />
+      <Text className="text-2xl font-bold text-gray-900 mt-2 mb-1">
+        {number}
+      </Text>
+      <Text className="text-gray-600 text-sm">{label}</Text>
+    </View>
+  );
+}
+
+function QuickActionItem({
   icon,
   text,
   iconColor,
@@ -80,9 +107,34 @@ function FeatureItem({
   iconColor: string;
 }) {
   return (
-    <View className="bg-gray-50 rounded-xl p-4 mb-3 flex-row items-center">
+    <TouchableOpacity className="bg-gray-50 rounded-xl p-4 flex-row items-center">
       <IconSymbol name={icon as any} size={24} color={iconColor} />
       <Text className="ml-4 text-gray-800 font-medium text-base">{text}</Text>
-    </View>
+    </TouchableOpacity>
+  );
+}
+
+function ActivityItem({
+  icon,
+  title,
+  subtitle,
+  iconColor,
+}: {
+  icon: string;
+  title: string;
+  subtitle: string;
+  iconColor: string;
+}) {
+  return (
+    <TouchableOpacity className="flex-row items-center py-3">
+      <View className="w-10 h-10 bg-blue-50 rounded-full items-center justify-center mr-4">
+        <IconSymbol name={icon as any} size={20} color={iconColor} />
+      </View>
+      <View className="flex-1">
+        <Text className="text-gray-900 font-medium text-base">{title}</Text>
+        <Text className="text-gray-500 text-sm">{subtitle}</Text>
+      </View>
+      <IconSymbol name="chevron.right" size={16} color="#9CA3AF" />
+    </TouchableOpacity>
   );
 }
